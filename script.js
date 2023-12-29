@@ -107,3 +107,31 @@ document.getElementById('previous').addEventListener('click', ()=>{
     masterPlay.classList.remove('fa-play-circle');
     masterPlay.classList.add('fa-pause-circle');
 })
+
+
+// Detect whether the user is scrolling up or down
+let lastScrollTop = 0;
+
+window.addEventListener("scroll", function () {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > lastScrollTop) {
+        // Scrolling down
+        hideBottomSection();
+    } else {
+        // Scrolling up
+        showBottomSection();
+    }
+
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+});
+
+function hideBottomSection() {
+    const bottomSection = document.querySelector('.bottom');
+    bottomSection.style.transform = 'translateY(100%)';
+}
+
+function showBottomSection() {
+    const bottomSection = document.querySelector('.bottom');
+    bottomSection.style.transform = 'translateY(0)';
+}
